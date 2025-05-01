@@ -5,21 +5,21 @@
 See the nodes below:
 
 ## Basic nodes
-- [x] `<one>` node
-- [x] `<all>` node
-- [x] `<prl>` node
-- [x] `<sequence>` node
-- [x] `<markov>` node
+- [x] `<one>`
+- [x] `<all>`
+- [x] `<prl>`
+- [x] `<sequence>`
+- [x] `<markov>`
 
-## Advanced nodes
-- [ ] `<map>` node
-- [ ] `<observe>` node
-- [ ] `<field>` node
-- [ ] `<path>` node
-- [x] `<convolution>` node
-- [ ] `<convchain>` node
-- [ ] `<wfc>` node
-- [ ] `<union>` node
+## Advanceds
+- [ ] `<map>`
+- [ ] `<observe>`
+- [ ] `<field>`
+- [ ] `<path>`
+- [x] `<convolution>`
+- [ ] `<convchain>`
+- [ ] `<wfc>`
+- [ ] `<union>`
 
 # General features
 - [x] custom symmetry
