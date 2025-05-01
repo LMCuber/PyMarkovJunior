@@ -1,5 +1,6 @@
 # Not supported yet
 - `Sequence` nodes inside `Markov` nodes to emulate loops
+- Unions for pattern matching
 
 # TODO
 See the nodes below:
@@ -11,7 +12,7 @@ See the nodes below:
 - [x] `<sequence>`
 - [x] `<markov>`
 
-## Advanceds
+## Advanced Nodes
 - [ ] `<map>`
 - [ ] `<observe>`
 - [ ] `<field>`
@@ -21,5 +22,5 @@ See the nodes below:
 - [ ] `<wfc>`
 - [ ] `<union>`
 
-# General features
+## General features
 - [x] custom symmetry
