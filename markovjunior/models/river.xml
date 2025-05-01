@@ -1,0 +1,28 @@
+<sequence values="B">
+    <!-- initiate voronoi -->
+    <one in="B" out="W" steps="1"></one>
+    <one in="B" out="R" steps="1"></one>
+    <!-- voronoi -->
+    <one>
+        <rule in="WB" out="WW"></rule>
+        <rule in="RB" out="RR"></rule>
+    </one>
+    <!-- create river -->
+    <all in="RW" out="UU"></all>
+    <!-- reduce voronoi partitions to one color (black) -->
+    <all>
+        <rule in="W" out="B"></rule>
+        <rule in="R" out="B"></rule>
+    </all>
+    <!-- process river -->
+    <all in="UB" out="UU"></all>
+    <all in="BU/UB" out="U*/**"></all>
+    <all in="UB" out="*G"></all>
+    <!-- pland seed for forest patches -->
+    <one in="B" out="E" steps="7"></one>
+    <!-- grow forest -->
+    <one>
+        <rule in="EB" out="*E"/>
+        <rule in="GB" out="*G"/>
+    </one>
+</sequence>

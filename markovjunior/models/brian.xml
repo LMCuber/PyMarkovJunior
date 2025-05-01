@@ -1,0 +1,9 @@
+<sequence values="BRW">
+    <prl in="*" out="R" p="1/2" steps="1"></prl>
+    <prl in="*" out="W" p="1/3" steps="1"></prl>
+    <convolution neighborhood="Moore">
+        <rule in="B" out="W" sum="2" values="W"></rule>
+        <rule in="W" out="R" sum="0" values="A"></rule>
+        <rule in="R" out="B" sum="0" values="A"></rule>
+    </convolution>
+</sequence>
