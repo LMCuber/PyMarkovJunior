@@ -3,7 +3,7 @@
 - Unions for pattern matching
 
 # TODO
-See the nodes below:
+- Add documentation
 
 ## Basic nodes
 - [x] `<one>`
@@ -19,7 +19,7 @@ See the nodes below:
 - [ ] `<path>`
 - [x] `<convolution>`
 - [ ] `<convchain>`
-- [ ] `<wfc>`
+- [x] `<wfc>`
 - [ ] `<union>`
 
 ## General features

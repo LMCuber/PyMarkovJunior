@@ -1,0 +1,11 @@
+README.md
+setup.py
+MarkovJunior.egg-info/PKG-INFO
+MarkovJunior.egg-info/SOURCES.txt
+MarkovJunior.egg-info/dependency_links.txt
+MarkovJunior.egg-info/requires.txt
+MarkovJunior.egg-info/top_level.txt
+markovjunior/__init__.py
+markovjunior/markov.py
+markovjunior/settings.py
+markovjunior/wfc.py

@@ -5,3 +5,10 @@ This is a pure Python package of the [MarkovJunior](https://github.com/mxgmn/Mar
 - `numpy` for general array structures and manipulation
 - `scipy` for the handy convolution module
 - `pygame` for rendering
+
+# Showcase
+<p align="center">
+<img src="https://github.com/LMCuber/PyMarkovJunior/blob/main/previews/dungeon.gif"/>
+<br />
+dungeon.xml
+</p>

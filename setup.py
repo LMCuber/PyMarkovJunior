@@ -10,7 +10,7 @@ setup(
     url="https://github.com/LMCuber/PyMarkovJunior",
     packages=find_packages(),
     install_requires=[
-        "pygame", "numpy", "scipy",
+        "pygame-ce", "numpy", "scipy",
     ],
     classifiers=[
         "Programming Language :: Python :: 3",

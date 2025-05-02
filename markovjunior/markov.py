@@ -1,4 +1,5 @@
-from settings import *
+from .settings import *
+from .wfc import WfcNode
 
 import pygame
 from pygame.time import get_ticks as ticks
@@ -14,6 +15,7 @@ from scipy.signal import convolve2d
 from fractions import Fraction
 from pathlib import Path
 from itertools import chain
+from math import sqrt
 
 
 # colors
@@ -38,10 +40,6 @@ def flatten2d(iterable):
     return sum(iterable, [])
 
 
-def is_true(string):
-    return string.casefold() == "true"  # casefold is a more rigorous .lower() I heard somewhere
-
-
 def dict_to_pairs(data):
     if isinstance(data, dict):
         return [[key, dict_to_pairs(value)] for key, value in data.items()]
@@ -63,7 +61,8 @@ def uniques(lst):
 class Markov:
     def __init__(self, rules_path, grid_size):
         # very excellent variable naming
-        self.width, self.height = grid_size
+        self.grid_size = grid_size
+        self.width, self.height = self.grid_size
         self.size = WIDTH / self.width
         self.running = True
         # initialization of important stuff
@@ -81,13 +80,7 @@ class Markov:
         #
         self.last_update = ticks()
     
-    def update(self):
-        if ticks() - self.last_update >= 0:
-            self.process_rules()
-            self.last_update = ticks()
-        self.draw()
-
-    def draw(self):
+    def render_to_surf(self, surf):
         for y_start, y_end, x_start, x_end, out_pattern in self.updated_indices:
             for dy in range(out_pattern.shape[0]):
                 for dx in range(out_pattern.shape[1]):
@@ -95,8 +88,23 @@ class Markov:
                     if tile != "*":
                         color = self.color_map[tile]
                         self.image.set_at((x_start + dx, y_start + dy), color)
-        DIS.blit(self.image, (0, 0))
+        surf.blit(self.image, (0, 0))
         self.updated_indices = []
+    
+    def update(self):
+        if ticks() - self.last_update >= 0:
+            self.process_rules()
+            self.last_update = ticks()
+        
+    def palettize(self, src_color):
+        closest_dist = float("inf")
+        closest_color = None
+        for color_code, rgb in self.color_map.items():
+            dist = sqrt((src_color[0] - rgb[0]) ** 2 + (src_color[1] - rgb[1]) ** 2 + (src_color[2] - rgb[2]) ** 2)
+            if dist < closest_dist:
+                closest_dist = dist
+                closest_color = color_code
+        return closest_color
         
     def init_hashmaps(self):
         self.color_map = {
@@ -140,7 +148,7 @@ class Markov:
                 for y in range(n)
             ]
     
-    def apply(self, indices):
+    def apply(self, indices: list[list[int, int, int, int, str]]):
         for index in indices:
             # update updated_indices list for rendering purposes
             self.updated_indices.append(index)
@@ -312,6 +320,8 @@ class Markov:
                 node_obj = RuleNode(parent, attrib, self)
             elif node.tag == "convolution":
                 node_obj = ConvolutionNode(parent, attrib, self)
+            elif node.tag == "wfc":
+                node_obj = WfcNode(parent, attrib, self)
 
             elif node.tag == "union":
                 self.unions[attrib["symbol"]] = attrib["values"]
@@ -515,47 +525,3 @@ class AllNode(RuleNode):
 
 class PrlNode(AllNode):
     pass
-
-
-markov = Markov(Path("models", "gameoflife.xml"), [2 ** 7] * 2)
-DIS = markov.image.copy()
-
-
-def main():
-    # mainloop
-    running = __name__ == "__main__"
-    while running:
-        clock.tick(1000)
-    
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-            
-            elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_q:
-                    running = False
-                
-                elif event.key == pygame.K_SPACE:
-                    markov.update()
-                    # ...
-    
-        # clearing window
-        DIS.fill(pygame.Color("darkslategray"))
-
-        # update the madness
-        markov.update()
-
-        # blit faux display onto window
-        WIN.blit(pygame.transform.scale_by(DIS, markov.size), (0, 0))
-
-        # fps
-        WIN.blit(font.render(str(int(clock.get_fps())), True, markov.color_map["F"]), (10, 10))
-
-        # flip the display
-        pygame.display.flip()
-
-    pygame.quit()
-    sys.exit()
-
-main()
-# cProfile.run("main()", sort="cumtime", filename="cprof.out")
