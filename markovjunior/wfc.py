@@ -62,7 +62,8 @@ class WfcNode:
         self._populate_map()
     
     def process(self):
-        self.collapse()
+        # self.collapse()
+        Thread(target=self.collapse, daemon=True).start()
         return False
     
     def collapse(self):

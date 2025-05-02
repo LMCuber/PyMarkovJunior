@@ -7,8 +7,12 @@ This is a pure Python package of the [MarkovJunior](https://github.com/mxgmn/Mar
 - `pygame` for rendering
 
 # Showcase
+Below are two gifs that showcase the capabilities of MarkovJunior:
+- A dungeon generator using pure MarkovJunior nodes
+- A city generator using the `<wfc>` node
 <p align="center">
-<img src="https://github.com/LMCuber/PyMarkovJunior/blob/main/previews/dungeon.gif" width="50%"/>
+<img src="https://github.com/LMCuber/PyMarkovJunior/blob/main/previews/dungeon.gif" width="40%"/>
+<img src="https://github.com/LMCuber/PyMarkovJunior/blob/main/previews/city.gif" width="40%"/>
 <br />
-dungeon.xml
+dungeon | city
 </p>
