@@ -8,7 +8,7 @@ This is a pure Python package of the [MarkovJunior](https://github.com/mxgmn/Mar
 
 # Showcase
 <p align="center">
-<img src="https://github.com/LMCuber/PyMarkovJunior/blob/main/previews/dungeon.gif"/>
+<img src="https://github.com/LMCuber/PyMarkovJunior/blob/main/previews/dungeon.gif" width="50%"/>
 <br />
 dungeon.xml
 </p>
